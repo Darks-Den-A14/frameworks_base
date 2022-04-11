@@ -27,6 +27,12 @@
         <item quantity="other">%d devices connected</item>
     </plurals>
 
+    <!-- Preferred network tile -->
+    <string name="quick_settings_preferred_network_label">Preferred network</string>
+    <string name="quick_settings_preferred_network_lte">4G / LTE</string>
+    <string name="quick_settings_preferred_network_nr">5G / NR</string>
+    <string name="quick_settings_preferred_network_unsupported">Unsupported</string>
+
     <!-- Sound QS Tile -->
     <string name="quick_settings_sound_label">Sound</string>
     <string name="quick_settings_sound_ring">Ring</string>
