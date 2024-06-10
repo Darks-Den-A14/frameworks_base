@@ -16,6 +16,5 @@
 */
 -->
 <resources>
-    <dimen name="custom_clock_2_avatar_radius">16dp</dimen>
-    <dimen name="custom_clock_2_avatar_width">70dp</dimen>
+    <dimen name="custom_clock_2_avatar_radius">16.0dip</dimen>
 </resources>
