@@ -304,7 +304,7 @@ public final class PixelPropsUtils {
                     return;
             } else if (packageName.equals("com.android.vending")) {
                 sIsFinsky = true;
-                propsToChange.putAll(propsToChangePixel5a);
+                return;
             } else if (packageName.equals("com.google.android.gms")) {
                 setPropValue("TIME", System.currentTimeMillis());
                 final String processName = Application.getProcessName().toLowerCase();
@@ -460,6 +460,22 @@ public final class PixelPropsUtils {
         setPropValue("TAGS", "release-keys");
         setPropValue("VERSION.SECURITY_PATCH", "2024-09-05");
         setPropValue("VERSION.DEVICE_INITIAL_SDK_INT", "32");
+    }
+
+    private static boolean isCallerSafetyNet() {
+        return Arrays.stream(Thread.currentThread().getStackTrace())
+                        .anyMatch(elem -> elem.getClassName().toLowerCase()
+                            .contains("droidguard"));
+    }
+
+    public static void onEngineGetCertificateChain() {
+        if (!SystemProperties.getBoolean(SPOOF_PIXEL_PI, true))
+            return;
+        // Check stack for SafetyNet or Play Integrity
+        if ((isCallerSafetyNet() || sIsFinsky) && !sIsExcluded) {
+            Log.i(TAG, "Blocked key attestation");
+            throw new UnsupportedOperationException();
+        }
     }
 
     private static boolean isCallerSafetyNet() {
