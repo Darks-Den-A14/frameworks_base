@@ -144,7 +144,6 @@ public class PixelPropsUtils {
             if (SystemProperties.getBoolean(SPOOF_PIXEL_GPHOTOS, true)) {
                 propsToChange.putAll(propsToChangePixelXL);
             } else {
-                if (!isPixelDevice) {
                     propsToChange.putAll(propsToChangePixel5a);
                 }
             }
