@@ -147,10 +147,10 @@ public class PixelPropsUtils {
                 propsToChange.putAll(propsToChangePixelXL);
             } else {
                 if (!isMainlineDevice) {
-                    propsToChange.putAll(propsToChangePixel5a);
+                    propsToChange.putAll(propsToChangeMainline);
                 }
             }
-        
+        }
         if (packageName.equals("com.snapchat.android")) {
             propsToChange.putAll(propsToChangePixelXL);
         }
