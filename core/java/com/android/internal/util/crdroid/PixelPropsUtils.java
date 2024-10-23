@@ -43,6 +43,7 @@ public class PixelPropsUtils {
     private static final boolean DEBUG = SystemProperties.getBoolean(PROP_HOOKS + "DEBUG", false);
 
     private static final String SPOOF_PIXEL_GMS = "persist.sys.pixelprops.gms";
+    private static final String SPOOF_PIXEL_PI = "persist.sys.pixelprops.pi";
     private static final String SPOOF_PIXEL_GPHOTOS = "persist.sys.pixelprops.gphotos";
     private static final String SPOOF_PIXEL_NETFLIX = "persist.sys.pixelprops.netflix";
     private static final String ENABLE_PROP_OPTIONS = "persist.sys.pixelprops.all";
@@ -324,6 +325,8 @@ public class PixelPropsUtils {
     }
 
     public static void onEngineGetCertificateChain() {
+        if (!SystemProperties.getBoolean(SPOOF_PIXEL_PI, true))
+            return;
 
         // If a keybox is found, don't block key attestation
         if (KeyProviderManager.isKeyboxAvailable()) {
@@ -342,3 +345,4 @@ public class PixelPropsUtils {
         if (DEBUG) Log.d(TAG, msg);
     }
 }
+
